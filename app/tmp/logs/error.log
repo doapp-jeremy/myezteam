@@ -1,0 +1,16 @@
+2011-01-01 20:53:32 Error: [MissingActionException] Action Users::index() could not be found.
+#0 /opt/cake/runtime/20/200/cake/libs/controller/scaffold.php(152): Scaffold->_scaffold(Object(CakeRequest))
+#1 /opt/cake/runtime/20/200/cake/libs/dispatcher.php(163): Scaffold->__construct(Object(UsersController), Object(CakeRequest))
+#2 /opt/cake/runtime/20/200/cake/libs/dispatcher.php(119): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest))
+#3 /home/jeremy/Dropbox/workspaces/myezteam/myezteam_20/app/webroot/index.php(78): Dispatcher->dispatch(Object(CakeRequest))
+#4 {main}
+2011-01-01 20:53:35 Error: [MissingControllerException] Controller class AdminusersController could not be found.
+#0 /home/jeremy/Dropbox/workspaces/myezteam/myezteam_20/app/webroot/index.php(78): Dispatcher->dispatch(Object(CakeRequest))
+#1 {main}
+2011-01-01 21:00:00 Error: [MissingViewException] View file "/home/jeremy/Dropbox/workspaces/myezteam/myezteam_20/app/views/users/login.ctp" is missing.
+#0 /opt/cake/runtime/20/200/cake/libs/view/view.php(388): View->_getViewFileName(NULL)
+#1 /opt/cake/runtime/20/200/cake/libs/controller/controller.php(848): View->render(NULL, NULL, NULL)
+#2 /opt/cake/runtime/20/200/cake/libs/dispatcher.php(174): Controller->render()
+#3 /opt/cake/runtime/20/200/cake/libs/dispatcher.php(119): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest))
+#4 /home/jeremy/Dropbox/workspaces/myezteam/myezteam_20/app/webroot/index.php(78): Dispatcher->dispatch(Object(CakeRequest))
+#5 {main}

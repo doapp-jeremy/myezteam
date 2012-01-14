@@ -1,0 +1,24 @@
+# create project location
+sudo mkdir -p /opt/myezteam;
+sudo ln -s ~/Dropbox/workspaces/myezteam/myezteam_20;
+
+# www-data on ubuntu....will differ on mac (www?)
+sudo chgrp -R www-data /opt/myezteam/myezteam_20/app/webroot;
+sudo chmod -R g+r /opt/myezteam/myezteam_20/app/webroot;
+sudo mkdir -p /opt/myezteam/myezteam_20/app/webroot/ccss;
+sudo chmod -R g+w /opt/myezteam/myezteam_20/app/webroot/ccss;
+sudo mkdir -p /opt/myezteam/myezteam_20/app/webroot/cjs;
+sudo chmod -R g+w /opt/myezteam/myezteam_20/app/webroot/cjs;
+sudo chgrp -R www-data /opt/myezteam/myezteam_20/app/tmp;
+sudo chmod -R g+rw /opt/myezteam/myezteam_20/app/tmp;
+
+sudo chown -R jeremy /opt/myezteam/myezteam_20/*
+
+# symlink apache config file
+sudo ln -s /opt/myezteam/myezteam_20/etc/apache22.conf /etc/apache2/sites-enabled/myezteam_20.conf
+
+# add host name to /etc/hosts - 127.0.1.1       localhost-myeasyteam.com
+sudo nano /etc/hosts
+
+# create facebook config ln
+ln -s /opt/myezteam/myezteam_20/app/config/facebook_dev.php /opt/myezteam/myezteam_20/app/config/facebook.php

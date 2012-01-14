@@ -1,0 +1,1 @@
+<div>TM + &copy;<?php echo date('Y')?> My EZ Team Inc. All rights reserved.</div>
