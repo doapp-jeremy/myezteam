@@ -2,7 +2,7 @@ set :application, "myeasyteam"
 set :scm, "git"
 set :scm_username, "doapp-jeremy"  # The server's user for deploys
 set :scm_passphrase, "bond007"  # The deploy user's password
-set :repository, "git@github.com:${scm_user}/#{application}.git"  # Your clone URL
+set :repository, "git@github.com:#{scm_username}/myezteam.git"  # Your clone URL
 set :user, "deploy"
 
 namespace :deploy do

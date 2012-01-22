@@ -38,10 +38,10 @@ else
 #  set :gateway, "ryanadmin.doapps.com:49222"
 #  set :user, "deploy"
   
-#  ssh_options[:forward_agent] = true
-#  ssh_options[:keys] = "/home/jeremy/.ssh/dasdeploy_rsa" 
-#  ssh_options[:auth_methods] = "publickey"
-#  ssh_options[:config]=false
+  ssh_options[:forward_agent] = true
+  ssh_options[:keys] = "/home/jeremy/.ssh/deploy_rsa" 
+  ssh_options[:auth_methods] = "publickey"
+  ssh_options[:config]=false
   #ssh_options[:verbose] = :debug
    
   set :keep_releases, 2
