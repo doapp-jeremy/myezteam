@@ -1,0 +1,8 @@
+[submodule "facebook"]
+	path=app/plugins/facebook
+        url=https://github.com/webtechnick/CakePHP-Facebook-Plugin.git
+[submodule "mi"]
+        path=app/plugins/mi
+        url=https://github.com/AD7six/mi.git
+
+
