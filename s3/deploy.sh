@@ -11,7 +11,7 @@
 
 EXPECTED_ARGS=1
 APP_NAME=myeasyteam
-DIRECTORY=/tmp/myeasyteam/apps/deploy/$APP_NAME
+DIRECTORY=/tmp/apps/deploy/$APP_NAME
 LOGFILE=$DIRECTORY/deploy.log
 GIT_REMOTE="git@github.com:doapp-jeremy/myezteam.git"
 
@@ -42,7 +42,7 @@ DEPLOY_IP=$1
 cd $DIRECTORY >> $LOGFILE 2>&1
 
 function setupdeploy {
-	git clone --recursive $GIT_REMOTE >> $LOGFILE 2>&1
+	git clone --recursive $GIT_REMOTE $APP_NAME >> $LOGFILE 2>&1
 	cd $APP_NAME >> $LOGFILE 2>&1
 	git checkout $BRANCH >> $LOGFILE 2>&1
 	git submodule init >> $LOGFILE 2>&1
