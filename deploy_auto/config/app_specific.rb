@@ -7,7 +7,8 @@ set :user, "deploy"
 
 namespace :deploy do
   task :finalize_update, :roles => :app do
-    #run "cd #{release_path}/includes/ && ln -sf ./#{stage}/config.#{stage}.php ./config.php"       
+    #run "cd #{release_path}/includes/ && ln -sf ./#{stage}/config.#{stage}.php ./config.php"
+    run "cd #{release_path}/app/config && ln -sf ./facebook_#{stage}.php ./facebook.php"   
               
     # write repository revision
     write_revision

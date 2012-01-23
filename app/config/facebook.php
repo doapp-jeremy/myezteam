@@ -1,1 +1,0 @@
-/opt/myezteam/myezteam_20/app/config/facebook_dev.php
