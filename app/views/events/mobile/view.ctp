@@ -1,7 +1,7 @@
 <div data-role="header">
 	<?php 
  	$eventStart = date_create($event['Event']['start']);
- 	$eventTitle = "{$event['Event']['name']}: {$eventStart->format('l, m/d g:ia')}";
+ 	$eventTitle = "{$event['Event']['name']}";
 	?>
 	<h1><?= $eventTitle; ?></h1>
 </div>
@@ -14,6 +14,9 @@
 </div>
 
 <div data-role="content">
+	<div>
+		<b>When</b>: <?= date_create($event['Event']['start'])->format('l, m/d g:ia'); ?>
+	</div>
 	<div>
 		<b>Location</b>: <?= $event['Event']['location']; ?>
 	</div>
