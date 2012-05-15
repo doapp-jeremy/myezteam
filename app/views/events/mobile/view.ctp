@@ -1,7 +1,7 @@
 <div data-role="header">
 	<?php 
  	$eventStart = date_create($event['Event']['start']);
- 	$eventTitle = "{$event['Team']['name']}: {$event['Event']['name']}: {$eventStart->format('l, m/d g:ia')}";
+ 	$eventTitle = "{$event['Event']['name']}: {$eventStart->format('l, m/d g:ia')}";
 	?>
 	<h1><?= $eventTitle; ?></h1>
 </div>
