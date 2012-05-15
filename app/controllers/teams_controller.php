@@ -23,8 +23,14 @@ class TeamsController extends AppController
 //	  $fields = array('Team.id', 'Team.facebook_group', 'Team.name', '(NextEvent.id IS NULL) AS noEvent', 'NextEvent.id', 'NextEvent.name', 'NextEvent.date', 'NextEvent.time', 'LastEvent.id', 'LastEvent.name', 'LastEvent.date', 'LastEvent.time');
 	  $fields = array('Team.id', 'Team.facebook_group', 'Team.name');
 	  $conditions = array('Team.id' => $allTeamIds);
-	  $contain = array('UpcomingEvent', 'PastEvent');
+	  $contain = array(
+	  	'UpcomingEvent' => array('limit' => 1, 'order' => 'UpcomingEvent.start ASC')
+	  );
 	  $teams = $this->Team->find('all', compact('fields', 'conditions', 'contain'));
+	  
+	  // sort the teams by the first event start date
+	  
+	  usort($teams, 'compareEvents');
 	  
 	  $this->setFacebookGroups($teams);
 	  $this->set(compact('teams', 'teamsManagedIds'));
@@ -93,4 +99,26 @@ class TeamsController extends AppController
 	  $this->render('mobile/view');
 	}
 	
+}
+
+function compareEvents($a, $b)
+{
+  if (empty($a['UpcomingEvent']))
+  {
+    if (empty($b['UpcomingEvent']))
+    {
+      return 0;
+    }
+    return 1;
+  }
+  else
+  {
+    if (empty($b['UpcomingEvent']))
+    {
+      return -1;
+    }
+    $aDate = date_create($a['UpcomingEvent'][0]['start']);
+    $bDate = date_create($b['UpcomingEvent'][0]['start']);
+    return ($aDate < $bDate) ? -1 : 1;
+  }
 }
