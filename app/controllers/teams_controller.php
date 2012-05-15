@@ -24,7 +24,8 @@ class TeamsController extends AppController
 	  $fields = array('Team.id', 'Team.facebook_group', 'Team.name');
 	  $conditions = array('Team.id' => $allTeamIds);
 	  $contain = array(
-	  	'UpcomingEvent' => array('limit' => 1, 'order' => 'UpcomingEvent.start ASC')
+	  	'UpcomingEvent' => array('limit' => 1, 'order' => 'UpcomingEvent.start ASC'),
+	    'PastEvent' => array('limit' => 1, 'order' => 'PastEvent.start DESC')
 	  );
 	  $teams = $this->Team->find('all', compact('fields', 'conditions', 'contain'));
 	  
@@ -107,7 +108,25 @@ function compareEvents($a, $b)
   {
     if (empty($b['UpcomingEvent']))
     {
-      return 0;
+      // check past events
+      if (empty($a['PastEvent']))
+      {
+        if (empty($b['PastEvent']))
+        {
+          return 0;
+        }
+        return -1;
+      }
+      else
+      {
+        if (empty($b['PastEvent']))
+        {
+          return 1;
+        }
+        $aDate = date_create($a['PastEvent'][0]['start']);
+        $bDate = date_create($b['PastEvent'][0]['start']);
+        return ($aDate < $bDate) ? 1 : -1;
+      }
     }
     return 1;
   }
