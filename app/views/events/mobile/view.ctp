@@ -8,7 +8,7 @@
 
 <div data-role="navbar">
 	<ul>
-		<li><a href='/'>My Teams</a></li>
+		<li><a href='/Teams/index/0'>My Teams</a></li>
 		<li><a href='/Teams/view/<?= $event['Team']['id']; ?>'><?= $event['Team']['name']; ?></a></li>
 	</ul>
 </div>

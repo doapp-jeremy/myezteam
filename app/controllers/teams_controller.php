@@ -5,7 +5,7 @@ class TeamsController extends AppController
 	public $scaffold = 'admin';
 	public $components = array('FastrestServer');
 	
-	function index()
+	function index($redirect = true)
 	{
 	  $teamsManagedIds = $this->getTeamsManaged($this->Team->Manager);
 	  $teamsPlayerIds = $this->getPlayerTeams($this->Team->Manager);
@@ -32,6 +32,15 @@ class TeamsController extends AppController
 	  // sort the teams by the first event start date
 	  
 	  usort($teams, 'compareEvents');
+	  
+	  // if a user only has one activce team, redirect them to that team
+	  if ($redirect)
+	  {
+	    if ((count($teams) == 1) || ((count($teams) > 1) && !empty($teams[0]['UpcomingEvent']) && empty($teams[1]['UpcomingEvent'])))
+	    {
+	      $this->redirect(array('action' => 'view', $teams[0]['Team']['id']));
+	    }
+	  }
 	  
 	  $this->setFacebookGroups($teams);
 	  $this->set(compact('teams', 'teamsManagedIds'));
