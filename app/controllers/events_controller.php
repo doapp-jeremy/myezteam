@@ -61,6 +61,18 @@ class EventsController extends AppController
 	  $this->_saveOrSet($teamId);
 	}
 	
+	private function getResponsesByType($event)
+	{
+	  $responsesByType = array('yes' => array(), 'probable' => array(), 'maybe' => array(), 'no_response' => array(), 'no' => array());
+	  
+	  foreach ($event['Response'] as $response)
+	  {
+	    $responsesByType[$response['ResponseType']['name']][] = $response;
+	  }
+	  
+	  return $responsesByType;
+	} 
+	
 	function view($id = null)
 	{
 	  if (!$id)
@@ -81,12 +93,26 @@ class EventsController extends AppController
 	    )
 	  );
 	  $this->Event->contain($contain);
-//	  $fields = array('Event.id', 'Event.facebook_event', 'Event.name', 'Event.start');
 	  $fields = array();
 	  $event = $this->Event->read($fields, $id);
 	  // TODO: verify access to event
 	  
-	  $this->set(compact('event'));
-//	  debug($event);
+	  //debug($event);exit();
+	  
+	  $myResponse = Inflector::humanize($event['DefaultResponse']['name']);
+	  
+	  foreach ($event['Response'] as $response)
+	  {
+	    if ($response['Player']['user_id'] == $this->_getUserId())
+	    {
+	      $myResponse = Inflector::humanize($response['ResponseType']['name']) . ' at ' . date_create($response['created'])->format('g:ia \o\n n/d');
+	    }
+	  }
+	  
+	  $responsesByType = $this->getResponsesByType($event);
+	  $this->set(compact('event', 'myResponse', 'responsesByType'));
+	  
+	  $this->layout = 'mobile';
+	  $this->render('mobile/view');
 	}
 }

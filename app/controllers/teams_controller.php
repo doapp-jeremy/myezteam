@@ -28,6 +28,9 @@ class TeamsController extends AppController
 	  
 	  $this->setFacebookGroups($teams);
 	  $this->set(compact('teams', 'teamsManagedIds'));
+	  
+	  $this->layout = 'mobile';
+	  $this->render('mobile/index');
 	}
 	
 	function save($ext = 'json')
@@ -81,11 +84,13 @@ class TeamsController extends AppController
 	  
 	  $team = $this->Team->getTeam($id);
 	  
-	  
 	  $playerTypes = $this->Team->Player->PlayerType->find('list');
 	  $this->setFriends();
 	  $this->setFacebookGroups($team);
 	  $this->set(compact('team', 'playerTypes'));
+	  
+	  $this->layout = 'mobile';
+	  $this->render('mobile/view');
 	}
 	
 }
