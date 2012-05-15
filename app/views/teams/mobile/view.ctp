@@ -16,7 +16,7 @@
     	<?php 
     	$event = $team['UpcomingEvent'][0];
     	$eventStart = date_create($event['Event']['start']);
-    	$eventTitle = "{$event['Event']['name']}: {$eventStart->format('l, m/d g:ia')}";
+    	$eventTitle = "{$event['Event']['name']}: {$eventStart->format('m/d g:ia')}";
     	?>
 			<a data-role="button" href="/Events/view/<?= $event['Event']['id']?>"><b>Next Event</b>: <?= $eventTitle; ?></a>
 		<?php endif; ?>
