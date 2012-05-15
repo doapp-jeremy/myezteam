@@ -2,6 +2,11 @@
 	<h1><?= $team['Team']['name']; ?></h1>
 </div>
 
+  <div data-role="navbar">
+  	<ul>
+  		<li><a href='/'>My Teams</a></li>
+  	</ul>
+  </div>
 <div data-role="content">
 	
 	<div>
@@ -13,7 +18,7 @@
     	$eventStart = date_create($event['Event']['start']);
     	$eventTitle = "{$event['Event']['name']}: {$eventStart->format('l, m/d g:ia')}";
     	?>
-			<b>Next Event</b>: <a href="/Events/view/<?= $event['Event']['id']?>"><?= $eventTitle; ?></a>
+			<a data-role="button" href="/Events/view/<?= $event['Event']['id']?>"><b>Next Event</b>: <?= $eventTitle; ?></a>
 		<?php endif; ?>
 	</div>
 
