@@ -18,7 +18,7 @@
     	$eventStart = date_create($event['Event']['start']);
     	$eventTitle = "{$event['Event']['name']}: {$eventStart->format('m/d g:ia')}";
     	?>
-			<a data-role="button" href="/Events/view/<?= $event['Event']['id']?>"><b>Next Event</b>: <?= $eventTitle; ?></a>
+			<a data-role="button" href="/Events/view/<?= $event['Event']['id']?>"><?= $eventTitle; ?></a>
 		<?php endif; ?>
 	</div>
 
